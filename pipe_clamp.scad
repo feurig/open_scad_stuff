@@ -1,4 +1,6 @@
 //------------------------------------------------------------- pipe_clamp.scad
+use <screwey.scad>;
+
 $fa = 1;
 $fs = 0.4;
 gapSize=0.5;
@@ -8,6 +10,9 @@ clampThickness=5;
 baseThickness=5;
 baseWidth=pipeDiameter*2.0;
 gap2wall=8.0;
+
+
+
 
 difference () {
     union (){
@@ -37,4 +42,16 @@ difference () {
     translate([((pipeDiameter/2.0)+gap2wall)/2.0,-(pipeDiameter-gapSize)/2.0,0]){
         cube([(pipeDiameter/2.0)+gap2wall,gapSize,clampHeight*3.0],center=true);
     }
+    bevelled_screw_hole(diameter=4,
+                        depth=gap2wall,
+                        rotation=[0,90,0],
+                        location=[-1,0,clampHeight/2.0]);
+    bevelled_screw_hole(diameter=4,
+                        depth=gap2wall,
+                        rotation=[0,90,0],
+                        location=[-1,
+                                  (pipeDiameter/2)+clampThickness+
+                                  (baseWidth - (pipeDiameter+(clampThickness*2.0))/4), 
+                                  clampHeight/2.0]);
+
 }
