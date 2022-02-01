@@ -46,12 +46,19 @@ difference () {
                         depth=gap2wall,
                         rotation=[0,90,0],
                         location=[-1,0,clampHeight/2.0]);
+    DY=((pipeDiameter/2)
+        +clampThickness
+        +((baseWidth - (pipeDiameter+(clampThickness*2.0)))/4)
+       );
+                                  
     bevelled_screw_hole(diameter=4,
                         depth=gap2wall,
                         rotation=[0,90,0],
-                        location=[-1,
-                                  (pipeDiameter/2)+clampThickness+
-                                  (baseWidth - (pipeDiameter+(clampThickness*2.0))/4), 
-                                  clampHeight/2.0]);
+                        location=[baseThickness-gap2wall+1.5,DY,clampHeight/2.0]);
+
+    bevelled_screw_hole(diameter=4,
+                        depth=gap2wall,
+                        rotation=[0,90,0],
+                        location=[baseThickness-gap2wall+1.5,-DY,clampHeight/2.0]);
 
 }
