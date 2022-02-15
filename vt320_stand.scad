@@ -81,16 +81,25 @@ module vt320_arm_mount(){
 piBoxLength=60.0;
 piBoxWallThickness=3.0;
 dW=piBoxWallThickness*2.0;
+etherNetHeight=15;
+etherNetDepht=36;
+etherNetLength=90;
+
 module vt320_pi_box(){
     difference(){
-        union(){
-                translate([piBoxLength/2,0,standHeight/2]){
-                    cube([piBoxLength,standWidth+dW,standHeight],center=true);
-                    }
+        //outer wall
+        translate([piBoxLength/2,0,standHeight/2]){
+            cube([piBoxLength,standWidth+dW,standHeight],center=true);
             }
+        //inner wall   
         translate([(piBoxLength)/2,0,(standHeight+dW)/2]){
             cube([piBoxLength-dW,standWidth,standHeight],center=true);
         }
+        //hole for ethernet adapter   
+        translate([piBoxLength-((dW+etherNetDepht)/2),standWidth/2,(etherNetHeight+dW)/2]){
+            cube([etherNetDepht,standWidth,etherNetHeight],center=true);
+        }
+        // mounting holes.
         translate([-2,70.5,standHeight/2.0]){
             rotate([0,90,0]){
                 cylinder(d=5.5,h=slotWidth*4,center=false);
