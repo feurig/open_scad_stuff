@@ -78,8 +78,34 @@ module vt320_arm_mount(){
     }
 }
 
-translate([0,0,0]){ vt320_stand_end(); }
-translate([standHeight+10,0,0]) {vt320_stand_F1();}
-translate([(standHeight+10)*2.0,0,0]){vt320_stand_F2();}
-translate([(standHeight+10)*3,0,0]){vt320_arm_mount();}
-translate([(standHeight+10)*4,0]){vt320_arm_mount();}
+piBoxLength=60.0;
+piBoxWallThickness=3.0;
+dW=piBoxWallThickness*2.0;
+module vt320_pi_box(){
+    difference(){
+        union(){
+                translate([piBoxLength/2,0,standHeight/2]){
+                    cube([piBoxLength,standWidth+dW,standHeight],center=true);
+                    }
+            }
+        translate([(piBoxLength)/2,0,(standHeight+dW)/2]){
+            cube([piBoxLength-dW,standWidth,standHeight],center=true);
+        }
+        translate([-2,70.5,standHeight/2.0]){
+            rotate([0,90,0]){
+                cylinder(d=5.5,h=slotWidth*4,center=false);
+                }
+        }
+        translate([-2,-70.5,standHeight/2.0]){
+            rotate([0,90,0]){
+                cylinder(d=5.5,h=slotWidth*4,center=false);
+                }
+        }
+    }
+}
+
+translate([0,0,0]){ vt320_pi_box(); }
+//translate([standHeight+10,0,0]) {vt320_stand_F1();}
+//translate([(standHeight+10)*2.0,0,0]){vt320_stand_F2();}
+//translate([(standHeight+10)*3,0,0]){vt320_arm_mount();}
+//translate([(standHeight+10)*4,0]){vt320_arm_mount();}
