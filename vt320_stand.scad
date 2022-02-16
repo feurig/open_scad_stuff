@@ -79,10 +79,10 @@ module vt320_arm_mount(){
 }
 
 piBoxLength=60.0;
-piBoxWallThickness=3.0;
+piBoxWallThickness=2.5;
 dW=piBoxWallThickness*2.0;
-etherNetHeight=15;
-etherNetDepht=36;
+etherNetHeight=15.9;
+etherNetDepht=24;
 etherNetLength=90;
 
 module vt320_pi_box(){
