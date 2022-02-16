@@ -78,22 +78,28 @@ module vt320_arm_mount(){
     }
 }
 
-piBoxLength=60.0;
-piBoxWallThickness=2.5;
+piBoxLength=85.0;
+piBoxWidth=110;
+piBoxWallThickness=2;
 dW=piBoxWallThickness*2.0;
 etherNetHeight=15.9;
 etherNetDepht=24;
-etherNetLength=90;
+etherNetLength=106.6;
 
 module vt320_pi_box(){
     difference(){
         //outer wall
-        translate([piBoxLength/2,0,standHeight/2]){
-            cube([piBoxLength,standWidth+dW,standHeight],center=true);
+        union (){
+            translate([piBoxLength/2,0,standHeight/2]){
+                cube([piBoxLength,piBoxWidth+dW,standHeight],center=true);
             }
+            translate([piBoxWallThickness,0,standHeight/2]) { 
+                cube([dW,standWidth+dW,standHeight],center=true);
+ 
+            }}
         //inner wall   
         translate([(piBoxLength)/2,0,(standHeight+dW)/2]){
-            cube([piBoxLength-dW,standWidth,standHeight],center=true);
+            cube([piBoxLength-dW,piBoxWidth,standHeight],center=true);
         }
         //hole for ethernet adapter   
         translate([piBoxLength-((dW+etherNetDepht)/2),standWidth/2,(etherNetHeight+dW)/2]){
