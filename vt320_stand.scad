@@ -22,6 +22,7 @@ armSlotWidth=44;
 armSlotCenter=26;
 armSlotThickness=2.5;
 armSlotDepth=5.0;
+F2Width=12.0;
 module vt320_stand_end(){
     difference(){
         union(){
@@ -52,7 +53,7 @@ module vt320_stand_F1(){
 module vt320_stand_F2(){
     difference(){
     union(){
-            translate([standHeight/2,0,slotWidth*(3.0/2.0)]){cube([standHeight,standWidth,slotWidth*3],center=true);}
+            translate([standHeight/2,0,F2Width/2.0]){cube([standHeight,standWidth,F2Width],center=true);}
             translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
