@@ -52,16 +52,19 @@ module vt320_stand_F1(){
 module vt320_stand_F2(){
     difference(){
     union(){
-            translate([standHeight/2,0,slotWidth]){cube([standHeight,standWidth,slotWidth*2],center=true);}
+            translate([standHeight/2,0,slotWidth*(3.0/2.0)]){cube([standHeight,standWidth,slotWidth*3],center=true);}
             translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
             translate([-slotDepth*1.5,-(mainHookRadius+3),slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
         }
+            // slot for arm
             translate([standHeight-armSlotDepth,0,0]){cube([armSlotThickness,armSlotWidth,standHeight*8],center=true);}
             translate([standHeight,0,0]){cube([armSlotThickness+armSlotDepth,armSlotCenter,standHeight*8],center=true);}
             translate([standHeight/2.0,70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
             translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
+            captive_nut_hole(location=[standHeight/2.0,70.5,0.0]);
+            captive_nut_hole(location=[standHeight/2.0,-70.5,0.0]);
     }
 }
 
@@ -119,8 +122,8 @@ module vt320_pi_box(){
     }
 }
 
-translate([0,0,0]){ vt320_pi_box(); }
+//translate([0,0,0]){ vt320_pi_box(); }
 //translate([standHeight+10,0,0]) {vt320_stand_F1();}
-//translate([(standHeight+10)*2.0,0,0]){vt320_stand_F2();}
+translate([(standHeight+10)*2.0,0,0]){vt320_stand_F2();}
 //translate([(standHeight+10)*3,0,0]){vt320_arm_mount();}
 //translate([(standHeight+10)*4,0]){vt320_arm_mount();}

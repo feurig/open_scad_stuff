@@ -23,4 +23,14 @@ module bevelled_screw_hole(diameter=3,depth=15,location=[0.0,0.0,0.0],rotation=[
 
 bevelled_screw_hole(rotation=[0,90,0],location=[0,15,3]);
 bevelled_screw_hole(diameter=6,depth=8,rotation=[0,90,0],location=[0,0,5]);
-bevelled_screw_hole(rotation=[0,90,0],location=[0,-15,3]);
+//bevelled_screw_hole(rotation=[0,90,0],location=[0,-15,3]);
+
+module captive_nut_hole(diameter=3,depth=15,location=[0.0,0.0,0.0],rotation=[0.0,0.0,0.0]) {
+    translate(location) {
+        rotate(rotation){
+            cylinder(d=10.7,h=5.0,center=false,$fn=6);
+        }
+    }
+}
+
+captive_nut_hole(rotation=[0,90,0],location=[0,-15,3]);
