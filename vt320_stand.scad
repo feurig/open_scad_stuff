@@ -34,10 +34,10 @@ etherNetDepht=25.0;
 etherNetLength=106.6;
 
 
-module vt320_stand_F1(){
+module vt320_stand_rear_hook(){
     difference(){
     union(){
-            translate([standHeight/2,0,slotWidth]){cube([standHeight,standWidth,slotWidth*2],center=true);}
+            translate([standHeight/2,0,40]){cube([standHeight,standWidth,80],center=true);}
             translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
             translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
@@ -47,7 +47,7 @@ module vt320_stand_F1(){
             translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
     }
 }
-module vt320_stand_F2(){
+module vt320_stand_front_hook(){
     difference(){
         union(){
             translate([standHeight/2,0,F2Width/2.0]){cube([standHeight,standWidth,F2Width],center=true);}
@@ -92,24 +92,11 @@ module vt320_stand_end(){
                 } 
             }
 
-            translate([standHeight,-50.5,0]){
+            translate([standHeight,50.5,0]){
                 rotate([0,270-45,0]){
                     cylinder(d=14,h=slotWidth*6,center=false);
                     }
             }
-            //rotate([0,90,0]){
-            //    translate([(piBoxLength)/2,0,(standHeight+dW)/2]){
-            //        cube([piBoxLength-dW,piBoxWidth,standHeight],center=true);
-            //    }
-            //}
-
-            //cable hole
-            //translate([-standHeight,-50.5,0]){
-            //    rotate([0,-45,0]){
-            //        cylinder(d=10,h=slotWidth*8,center=true);
-            //        }
-            //}
-
             translate([standHeight/2.0,70.5,-12.0]){cylinder(d=5.5,h=standHeight,center=false);}
             translate([standHeight/2.0,-70.5,-12.0]){cylinder(d=5.5,h=standHeight,center=false);}
         }
@@ -139,19 +126,13 @@ module vt320_cable_box(){
         translate([piBoxLength-((dW+etherNetDepht)/2),-dW*2,(etherNetHeight+dW)/2]){
             cube([etherNetDepht,etherNetLength,etherNetHeight],center=true);
         }
-        // mounting holes.
-        //translate([-2,-70.5,standHeight/2.0]){
-        //    rotate([0,90,0]){
-        //        cylinder(d=5.5,h=slotWidth*4,center=false);
-        //        }
-        //}
     }
 }
 
 translate([0,0,0]){ vt320_stand_end(); }
 //vt320_cable_box();
 //translate([0,0,0]){ vt320_pi_box(); }
-//translate([standHeight+10,0,0]) {vt320_stand_F1();}
-//translate([(standHeight+10)*2.0,0,0]){vt320_stand_F2();}
+//translate([standHeight+10,0,0]) {vt320_stand_rear_hook();}
+//translate([(standHeight+10)*2.0,0,0]){vt320_stand_front_hook();}
 //translate([(standHeight+10)*3,0,0]){vt320_arm_mount();}
 //translate([(standHeight+10)*4,0]){vt320_arm_mount();}
