@@ -25,21 +25,22 @@ armSlotThickness=2.5;
 armSlotDepth=5.0;
 F2Width=12.0;
 
-piBoxLength=40.0;
-piBoxWidth=118;
-piBoxWallThickness=2;
-dW=piBoxWallThickness*2.0;
+cableBoxLength=40.0;
+cableBoxWidth=118;
+cableBoxWallThickness=2;
+dW=cableBoxWallThickness*2.0;
 etherNetHeight=17.0;
 etherNetDepht=25.0;
 etherNetLength=106.6;
-
+piBoxDepth=80; 
+piBoxWidth=136; 
 
 module vt320_stand_rear_hook(){
     difference(){
         union(){
-                translate([standHeight/2,0,40]){cube([standHeight,standWidth,80],center=true);}
-                translate([0,0,0]){
-                    rotate([0,180,0]){
+                translate([standHeight/2,0,piBoxDepth/2]){cube([standHeight,standWidth,piBoxDepth],center=true);}
+                translate([0,0,slotDepth*2]){
+                    rotate([180,0,0]){
                         translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
                         translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
                         translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
@@ -47,8 +48,16 @@ module vt320_stand_rear_hook(){
                     }
                 }
         }
-        translate([standHeight/2.0,70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
-        translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}    
+        translate([(standHeight+dW)/2,0,piBoxDepth/2+dW]){cube([standHeight,piBoxWidth-dW,piBoxDepth],center=true);}
+        translate([standHeight,50.5,0]){
+            rotate([0,-45,0]){
+                cylinder(d=14,h=slotWidth*6,center=false);
+            }
+        }
+
+
+        translate([standHeight/2.0,70.5,-2.0]){cylinder(d=5.5,h=cableBoxWidth,center=false);}
+        translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=cableBoxWidth,center=false);}    
     }
 }
 module vt320_stand_front_hook(){
@@ -112,28 +121,29 @@ module vt320_cable_box(){
         union(){
 
             difference(){
-                translate([(piBoxLength/2),0,standHeight/2]){
-                    cube([piBoxLength,piBoxWidth+dW,standHeight],center=true);
+                translate([(cableBoxLength/2),0,standHeight/2]){
+                    cube([cableBoxLength,cableBoxWidth+dW,standHeight],center=true);
                 }
         
                 //inner wall   
-                translate([((piBoxLength)/2)+(dW*2),0,(etherNetHeight+dW)/2]){
-                    cube([piBoxLength+dW,piBoxWidth,etherNetHeight],center=true);
+                translate([((cableBoxLength)/2)+(dW*2),0,(etherNetHeight+dW)/2]){
+                    cube([cableBoxLength+dW,cableBoxWidth,etherNetHeight],center=true);
                 }
             }
-            translate([(piBoxLength/2),(etherNetLength/2)-18,standHeight/2]){
-                cube([piBoxLength,dW,standHeight],center=true);
+            translate([(cableBoxLength/2),(etherNetLength/2)-18,standHeight/2]){
+                cube([cableBoxLength,dW,standHeight],center=true);
             }
         }
         
         //hole for ethernet adapter   
-        translate([piBoxLength-((dW+etherNetDepht)/2),-dW*2,(etherNetHeight+dW)/2]){
+        translate([cableBoxLength-((dW+etherNetDepht)/2),-dW*2,(etherNetHeight+dW)/2]){
             cube([etherNetDepht,etherNetLength,etherNetHeight],center=true);
         }
     }
 }
 
-translate([0,0,0]){ vt320_stand_end(); }
+//translate([0,0,0]){ vt320_stand_end(); }
+vt320_stand_rear_hook();
 //vt320_cable_box();
 //translate([0,0,0]){ vt320_pi_box(); }
 //translate([standHeight+10,0,0]) {vt320_stand_rear_hook();}
