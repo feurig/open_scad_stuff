@@ -36,15 +36,19 @@ etherNetLength=106.6;
 
 module vt320_stand_rear_hook(){
     difference(){
-    union(){
-            translate([standHeight/2,0,40]){cube([standHeight,standWidth,80],center=true);}
-            translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
-            translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
-            translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
-            translate([-slotDepth*1.5,-(mainHookRadius+3),slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
+        union(){
+                translate([standHeight/2,0,40]){cube([standHeight,standWidth,80],center=true);}
+                translate([0,0,0]){
+                    rotate([0,180,0]){
+                        translate([-slotDepth,mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
+                        translate([-slotDepth,-mainHookRadius,slotWidth]){cube([slotDepth*2,slotWidth,slotWidth*2],center=true);}
+                        translate([-slotDepth*1.5,mainHookRadius+3,slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
+                        translate([-slotDepth*1.5,-(mainHookRadius+3),slotWidth/2.0]){cube([slotDepth,6,slotWidth],center=true);}
+                    }
+                }
         }
-            translate([standHeight/2.0,70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
-            translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
+        translate([standHeight/2.0,70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}
+        translate([standHeight/2.0,-70.5,-2.0]){cylinder(d=5.5,h=slotWidth*4,center=false);}    
     }
 }
 module vt320_stand_front_hook(){
@@ -117,7 +121,7 @@ module vt320_cable_box(){
                     cube([piBoxLength+dW,piBoxWidth,etherNetHeight],center=true);
                 }
             }
-            translate([(piBoxLength/2),(etherNetLength/2)-15,standHeight/2]){
+            translate([(piBoxLength/2),(etherNetLength/2)-18,standHeight/2]){
                 cube([piBoxLength,dW,standHeight],center=true);
             }
         }
