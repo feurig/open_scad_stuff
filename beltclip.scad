@@ -13,7 +13,8 @@ clipHoleLength=22.0;
 clipHandleWidth=52.0;
 clipHandleLength=3.0;
 clipHandleHeight=12.0;
-wedgeHeight=5.0;
+clipHandleOffset=-6.0;
+wedgeHeight=8.0;
 wedgeWidth=42.0;
 union(){
     difference (){
@@ -25,19 +26,19 @@ union(){
         cube([clipHoleWidth,clipHoleLength,clipHeight+4], center=false);
     }
     }
-    translate([-(clipHandleWidth/2.0),-9,0]){
+    translate([-(clipHandleWidth/2.0),(clipHandleOffset),0]){
         cube([clipHandleWidth,clipHandleLength,clipHandleHeight], center=false);
     }
 
     CubePoints = [
-    [  -21.0,  -9.0,  0 ],  //0
-    [ -11.0,  0,  0 ],  //1
-    [ 11.0,  0,  0 ],  //2
-    [  21.0,  -9.0,  0 ],  //3
-    [  -21.0,  -9.0,  5 ],  //4
-    [ -11.0,  0,  3.0 ],  //5
-    [ 11.0,  0,  3.0 ],  //6
-    [  21.0,  -9,  5 ]]; //7
+    [  -(wedgeWidth/2.0),  (clipHandleOffset),  0 ],  //0
+    [ -(clipWidth/2.0),  0,  0 ],  //1
+    [ (clipWidth/2.0),  0,  0 ],  //2
+    [  (wedgeWidth/2.0),  (clipHandleOffset),  0 ],  //3
+    [  -(wedgeWidth/2.0),  (clipHandleOffset), wedgeHeight ],  //4
+    [ -(clipWidth/2.0),  0,  (clipHeight) ],  //5
+    [ (clipWidth/2.0),  0,  (clipHeight) ],  //6
+    [  (wedgeWidth/2.0),  (clipHandleOffset), wedgeHeight ]]; //7
     
     CubeFaces = [
     [0,1,2,3],  // bottom
