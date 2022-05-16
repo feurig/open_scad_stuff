@@ -5,17 +5,17 @@
 //
 $fa = 1;
 $fs = 0.4;
-clipLength=32.00;
-clipHeight=3.0;
+clipLength=28.00;
+clipHeight=2.75;
 clipWidth=22.0;
 clipHoleWidth=11.0;
-clipHoleLength=22.0;
+clipHoleLength=19.0;
 clipHandleWidth=52.0;
-clipHandleLength=3.0;
-clipHandleHeight=12.0;
+//clipHandleLength=3.0;
+clipHandleHeight=6.0;
 clipHandleOffset=-6.0;
-wedgeHeight=8.0;
-wedgeWidth=42.0;
+wedgeHeight=clipHandleHeight;
+wedgeWidth=46.0;
 union(){
     difference (){
 
@@ -26,8 +26,10 @@ union(){
         cube([clipHoleWidth,clipHoleLength,clipHeight+4], center=false);
     }
     }
-    translate([-(clipHandleWidth/2.0),(clipHandleOffset),0]){
-        cube([clipHandleWidth,clipHandleLength,clipHandleHeight], center=false);
+    translate([0.0,(clipHandleOffset),clipHandleHeight/2.0]){
+        rotate([0,90,0]){
+            cylinder(h=clipHandleWidth,d=clipHandleHeight, center=true);
+        }
     }
 
     CubePoints = [
