@@ -5,11 +5,11 @@
 //
 $fa = 1;
 $fs = 0.4;
-clipLength=28.00;
+clipLength=32.00;
 clipHeight=2.75;
 clipWidth=22.0;
 clipHoleWidth=11.0;
-clipHoleLength=19.0;
+clipHoleLength=23.0;
 clipHandleWidth=52.0;
 //clipHandleLength=3.0;
 clipHandleHeight=6.0;
