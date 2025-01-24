@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../node-export-temperatures"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
