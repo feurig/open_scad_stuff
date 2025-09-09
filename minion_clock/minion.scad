@@ -6,9 +6,14 @@ use <write/Write.scad>;
 // preview[view:south, tilt:side]
 
 /* [Minion] */
-
+$fa=2;
+$fs=1;
 // Enter a number, get a minion. 0 is randpm every time. The number is displayed, so remember good ones to print them.
-Minion = 0;
+Minion = 2856
+
+
+
+;
 
 MinionNumber= (Minion==0? floor(rands(0,1000000,1)[0]) : Minion);
 echo(str("Minion Number ",MinionNumber));
@@ -58,10 +63,12 @@ echo("bodyHeight",bodyHeight);
 // Eyes
 
 // How many eyes?
-numEyes = (rands(1,5,1,seed[4])[0]>4?1:2);
+//numEyes = (rands(1,5,1,seed[4])[0]>4?1:2);
+numEyes=1;
 // How low do the googles go?
-goggleDown=5;
-goggleDown = rands(0,20,1,seed[6])[0];
+goggleDown=20
+;
+//goggleDown = rands(0,20,1,seed[6])[0];
 // How thick is the rim of the goggles?
 goggleRim = 5;
 //echo("goggleRim",goggleRim);
@@ -80,13 +87,13 @@ pupil = eyeSize/2;
 // How thick is the goggle band?
 goggleBandThickness = 2;
 // How tall is the goggle band?
-goggleBandHeight = max(bodyLen/5,rands(1,10,1,seed[25])[0]);
+goggleBandHeight = max(bodyLen/3,rands(1,10,1,seed[25])[0]);
 //echo("goggleBandHeight",goggleBandHeight);
 // Open Top eyelid (degrees)
 // Look left/right
 lookLR = rands(0,1,1,seed[14])[0]*90-45;
 // Look up/down
-lookUD = (rands(0,1,1,seed[15])[0]*90-45)*.7;
+lookUD = (rands(0,1,1,seed[15])[0]*90-35)*.7;
 openTop = (lookUD<-20?90:rands(0,2,1,seed[12])[0]*45+5);
 // Open Bottom eyelid (degrees)
 openBottom = (lookUD>20?90:max(rands(0,1,1,seed[13])[0]*45+5,openTop));
@@ -150,11 +157,12 @@ beltHeight = bodyLen/3;
 armHeight = bodyLen*.25;
 //echo("arm height ",armHeight);
 // Mouth position
-mouthHeight = torso+(gogglePos-eyeSize)/3;
+mouthHeight = torso-10+(gogglePos-eyeSize)/3;
 //echo("mouthHeight",mouthHeight);
 
 // hair
 hair_type = floor(rands(0,5,1,seed[21])[0]); //[0:None, 1:Tufts, 2:Star, 3:Mohawk]
+hair_type = 0;
 hairLen = radius*rands(1,2,1,seed[22])[0]/5;
 hairRad = rands(2,4,1,seed[23])[0];
 hairSpacingX = rands(15,30,1,seed[24])[0];
@@ -164,11 +172,14 @@ hairSpacingY = rands(15,30,1,seed[25])[0];
 
 // Hand Propos arrays, [0] is left hand, [1] is right hand
 
-numProps = 2; // Increase as you add props
+numProps = 1; // Increase as you add props
 propNum = rands(-numProps,numProps+1,2,seed[26]); // what prop to draw in each hand
-propScale = rands(1,4,2,seed[27]); // Scale by this to keep things interesting
+//propNum = numProps;
+propScale = rands(1,8,2,seed[27]); // Scale by this to keep things interesting
+//propRotX = 90;
 propRotX = rands(0,45,2,seed[28]); // rotate X/Y to flop about wildly
 propRotY = rands(0,45,2,seed[29]);
+//propRotY = 90;
 propSubX = 45/2; // subtract from angle, so it's +/- 45 degrees in range
 propSubY = 45/2;
 
@@ -582,8 +593,9 @@ module handProp(right=1) {
 	// add new props here. Important: after adding new props, increase the range of the
 	// randomly generated propNum (above) to include the new prop.
 	rotate([propRotX[right]-propSubX,propRotY[right]-propSubY,-90]) {
-		if (pn==1) scale(propScale[right]) handRocket();
-		if (pn==2) scale(propScale[right]) handBomb();
+		//if (pn==1) scale(propScale[right]) handRocket();
+		//if (pn==2) scale(propScale[right]) handBomb();
+        scale(propScale[right]) handBomb();
 		}
 	}
 
